@@ -1,0 +1,17 @@
+{
+ "torch": "2.8.0",
+ "threads": 4,
+ "first_call_ms": 1031,
+ "eager_ms": 27.48,
+ "compiled_ms": 10.66,
+ "speedup": 2.6,
+ "max_err": 0.0,
+ "graphs": 2,
+ "graph_breaks": 1,
+ "shape_compiles": [
+  1,
+  2,
+  2,
+  2
+ ]
+}

@@ -1,0 +1,12 @@
+__pycache__/
+/demo.json
+/real_torch.json
+
+# Local credentials and machine-specific files
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+.DS_Store
+.venv/

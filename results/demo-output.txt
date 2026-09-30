@@ -1,0 +1,64 @@
+== 1. captured graph ==
+x = input()
+t0 = mul(0.5, x)
+t1 = pow(x, 3)
+t2 = mul(0.044715, t1)
+t3 = add(x, t2)
+t4 = mul(0.7978845608028654, t3)
+t5 = tanh(t4)
+t6 = add(1.0, t5)
+t7 = mul(t0, t6)
+return t7
+
+== 2. lowered graph (pow -> mul) ==
+x = input()
+t0 = mul(0.5, x)
+t1 = mul(x, x)
+t2 = mul(t1, x)
+t3 = mul(0.044715, t2)
+t4 = add(x, t3)
+t5 = mul(0.7978845608028654, t4)
+t6 = tanh(t5)
+t7 = add(1.0, t6)
+t8 = mul(t0, t7)
+return t8
+
+== 3. fusion: 1 kernel(s) from 9 ops ==
+whole-array reads+writes: eager 18, fused 2
+
+== 4. generated C ==
+#include <math.h>
+void kernel(const float* in_x, float* out) {
+    for (long i = 0; i < 10000000; i++) {
+        float x = in_x[i];
+        float t0 = 0.5f * x;
+        float t1 = x * x;
+        float t2 = t1 * x;
+        float t3 = 0.044715f * t2;
+        float t4 = x + t3;
+        float t5 = 0.7978845608028654f * t4;
+        float t6 = tanhf(t5);
+        float t7 = 1.0f + t6;
+        float t8 = t0 * t7;
+        out[i] = t8;
+    }
+}
+
+== 5. 10,000,000 floats ==
+first call (trace+compile): 829 ms
+eager numpy:           115.61 ms
+C, one loop per op:     45.63 ms   (max error 4.77e-07)
+C, fused (tiny_compile): 13.61 ms   (max error 4.77e-07)
+speedup vs eager 8.5x, fusion alone 3.4x
+
+== 6. guards ==
+batch  8 -> compiles so far: 1
+batch 16 -> compiles so far: 2
+batch  8 -> compiles so far: 2
+batch 32 -> compiles so far: 3
+same shape again -> compiles so far: 1
+new shape (1000,) -> compiles so far: 2
+new dtype float64 -> compiles so far: 3  max error 8.881784197001252e-16
+
+== 7. graph break ==
+graph break: an if on tensor values: the graph cannot know which way it goes -> running eagerly

@@ -1,0 +1,127 @@
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code] Output code: 
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code] # AOT ID: ['0_inference']
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code] from ctypes import c_void_p, c_long, c_int
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code] import torch
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code] import math
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code] import random
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code] import os
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code] import tempfile
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code] from math import inf, nan
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code] from cmath import nanj
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code] from torch._inductor.hooks import run_intermediate_hooks
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code] from torch._inductor.utils import maybe_profile
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code] from torch._inductor.codegen.memory_planning import _align as align
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code] from torch import device, empty_strided
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code] from torch._inductor.async_compile import AsyncCompile
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code] from torch._inductor.select_algorithm import extern_kernels
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code] 
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code] aten = torch.ops.aten
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code] inductor_ops = torch.ops.inductor
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code] _quantized = torch.ops._quantized
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code] assert_size_stride = torch._C._dynamo.guards.assert_size_stride
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code] assert_alignment = torch._C._dynamo.guards.assert_alignment
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code] empty_strided_cpu = torch._C._dynamo.guards._empty_strided_cpu
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code] empty_strided_cuda = torch._C._dynamo.guards._empty_strided_cuda
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code] empty_strided_xpu = torch._C._dynamo.guards._empty_strided_xpu
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code] reinterpret_tensor = torch._C._dynamo.guards._reinterpret_tensor
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code] alloc_from_pool = torch.ops.inductor._alloc_from_pool
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code] async_compile = AsyncCompile()
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code] empty_strided_p2p = torch._C._distributed_c10d._SymmetricMemory.empty_strided_p2p
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code] 
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code] 
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code] cpp_fused_add_mul_pow_tanh_0 = async_compile.cpp_pybinding(['const float*', 'float*'], '''
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code] #include <torch/csrc/inductor/cpp_prefix.h>
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code] extern "C"  void kernel(const float* in_ptr0,
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code]                        float* out_ptr0)
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code] {
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code]     #pragma omp parallel num_threads(4)
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code]     {
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code]         int tid = omp_get_thread_num();
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code]         {
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code]             #pragma omp for
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code]             for(int64_t x0=static_cast<int64_t>(0LL); x0<static_cast<int64_t>(10000000LL); x0+=static_cast<int64_t>(4LL))
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code]             {
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code]                 {
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code]                     if(C10_LIKELY(x0 >= static_cast<int64_t>(0) && x0 < static_cast<int64_t>(10000000LL)))
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code]                     {
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code]                         auto tmp0 = at::vec::Vectorized<float>::loadu(in_ptr0 + static_cast<int64_t>(x0), static_cast<int64_t>(4));
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code]                         auto tmp1 = static_cast<float>(0.5);
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code]                         auto tmp2 = at::vec::Vectorized<float>(tmp1);
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code]                         auto tmp3 = tmp0 * tmp2;
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code]                         auto tmp4 = tmp0 * tmp0;
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code]                         auto tmp5 = tmp4 * tmp0;
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code]                         auto tmp6 = static_cast<float>(0.044715);
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code]                         auto tmp7 = at::vec::Vectorized<float>(tmp6);
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code]                         auto tmp8 = tmp5 * tmp7;
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code]                         auto tmp9 = tmp0 + tmp8;
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code]                         auto tmp10 = static_cast<float>(0.7978845608028654);
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code]                         auto tmp11 = at::vec::Vectorized<float>(tmp10);
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code]                         auto tmp12 = tmp9 * tmp11;
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code]                         auto tmp13 = tmp12.tanh();
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code]                         auto tmp14 = static_cast<float>(1.0);
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code]                         auto tmp15 = at::vec::Vectorized<float>(tmp14);
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code]                         auto tmp16 = tmp13 + tmp15;
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code]                         auto tmp17 = tmp3 * tmp16;
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code]                         tmp17.store(out_ptr0 + static_cast<int64_t>(x0));
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code]                     }
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code]                 }
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code]             }
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code]         }
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code]     }
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code] }
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code] ''')
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code] 
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code] 
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code] async_compile.wait(globals())
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code] del async_compile
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code] 
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code] def call(args):
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code]     arg0_1, = args
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code]     args.clear()
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code]     assert_size_stride(arg0_1, (10000000, ), (1, ))
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code]     buf0 = empty_strided_cpu((10000000, ), (1, ), torch.float32)
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code]     cpp_fused_add_mul_pow_tanh_0(arg0_1, buf0)
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code]     del arg0_1
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code]     return (buf0, )
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code] 
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code] 
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code] def benchmark_compiled_module(times=10, repeat=10):
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code]     from torch._dynamo.testing import rand_strided
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code]     from torch._inductor.utils import print_performance
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code]     arg0_1 = rand_strided((10000000, ), (1, ), device='cpu', dtype=torch.float32)
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code]     fn = lambda: call([arg0_1])
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code]     return print_performance(fn, times=times, repeat=repeat)
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code] 
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code] 
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code] if __name__ == "__main__":
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code]     from torch._inductor.wrapper_benchmark import compiled_module_main
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code]     compiled_module_main('None', benchmark_compiled_module)
+V0930 11:31:28.422000 3937 site-packages/torch/_inductor/codecache.py:1236] [0/0] [__output_code] 
+V0930 11:31:28.423000 3937 site-packages/torch/_inductor/codecache.py:1237] [0/0] [__output_code] Output code written to: <tmp>/torchinductor_<user>/6t/c6tbd774kvuedyerplavittrhr4hmrgfcce76wh7pjdf362h7ghf.py
+== FX graph Dynamo captured ==
+opcode         name    target                                                args                       kwargs
+-------------  ------  ----------------------------------------------------  -------------------------  --------
+placeholder    l_x_    L_x_                                                  ()                         {}
+call_function  mul     <built-in function mul>                               (0.5, l_x_)                {}
+call_function  pow_1   <built-in method pow of type object at 0x104848ae8>   (l_x_, 3.0)                {}
+call_function  mul_1   <built-in function mul>                               (0.044715, pow_1)          {}
+call_function  add     <built-in function add>                               (l_x_, mul_1)              {}
+call_function  mul_2   <built-in function mul>                               (0.7978845608028654, add)  {}
+call_function  tanh    <built-in method tanh of type object at 0x104848ae8>  (mul_2,)                   {}
+call_function  add_1   <built-in function add>                               (1.0, tanh)                {}
+call_function  mul_3   <built-in function mul>                               (mul, add_1)               {}
+output         output  output                                                ((mul_3,),)                {}
+
+== graph breaks ==
+graphs: 2  graph breaks: 1
+reason: generic_jump TensorVariable()
+
+== recompiles ==
+batch  8 -> compiles so far: 1
+batch 16 -> compiles so far: 2
+batch  8 -> compiles so far: 2
+batch 32 -> compiles so far: 2
+
+== 10,000,000 floats, torch 2.8.0, 4 threads ==
+first call (compile): 1031 ms
+eager: 27.48 ms   compiled: 10.66 ms   speedup 2.6x   max error 0.00e+00
